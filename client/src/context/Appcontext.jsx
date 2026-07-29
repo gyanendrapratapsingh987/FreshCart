@@ -14,7 +14,7 @@ export const AppcontexProvider = ({ children }) => {
   // API URL
   // ===============================
   const API_URL =
-    import.meta.env.https://freshcart-backend-three.vercel.app || "http://localhost:4000";
+    import.meta.env.VITE_API_URL || "http://localhost:4000";
 
   // ===============================
   // Currency
