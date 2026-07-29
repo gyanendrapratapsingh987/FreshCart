@@ -1,0 +1,21 @@
+/* import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.jsx'
+import { BrowserRouter } from 'react-
+ */
+@import "tailwindcss";
+
+*{
+  font-family: "Outfit", sans-serif;
+}
+
+
+@theme {
+  --color-primary: #4f46e5;
+  --color-primary-dull: #44ae7c;
+}
+
+.no-scrollbar::-webkit-scrollbar{
+  display: none;
+}

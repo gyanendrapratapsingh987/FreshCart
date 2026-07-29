@@ -1,0 +1,64 @@
+import React from "react";
+import { useAppContext } from "../context/Appcontext";
+import { useParams } from "react-router-dom";
+import { categories } from "../assets/assets";
+import ProductCart from "../component/ProductCart";
+
+const ProductCategory = () => {
+  const { Products } = useAppContext();
+  const { category } = useParams();
+
+  console.log("URL Category:", category);
+  console.log(
+  "Product Categories:",
+  Products.map((product) => product.category)
+);  
+
+  const searchCategory = categories.find(
+    (item) => item.path.toLowerCase() === category?.toLowerCase()
+  );
+
+  const filteredProducts = Products.filter(
+    (product) =>
+      product.category.toLowerCase() === category?.toLowerCase()
+  );
+
+  return (
+    <div className="mt-16">
+
+      {/* Category Heading */}
+      {searchCategory && (
+        <div className="flex flex-col items-end w-max">
+          <p className="text-2xl font-medium">
+            {searchCategory.text.toUpperCase()}
+          </p>
+
+          <div className="w-16 h-0.5 bg-primary rounded-full"></div>
+        </div>
+      )}
+
+      {/* Products */}
+      {filteredProducts.length > 0 ? (
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-6 mt-6">
+
+          {filteredProducts.map((product) => (
+            <ProductCart
+              key={product._id}
+              product={product}
+            />
+          ))}
+
+        </div>
+      ) : (
+        <div className="flex items-center justify-center h-[60vh]">
+          <p className="text-2xl font-medium text-primary">
+            No products found in this category.
+          </p>
+        </div>
+      )}
+
+    </div>
+  );
+};
+
+export default ProductCategory;
