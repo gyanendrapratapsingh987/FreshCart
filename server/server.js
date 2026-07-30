@@ -1,4 +1,3 @@
-
 import cookieParser from "cookie-parser";
 import express from "express";
 import cors from "cors";
@@ -23,23 +22,20 @@ const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
   "https://freshcart-pi-six.vercel.app",
+  "https://fresh-cart-five-theta.vercel.app",
 ];
 
 app.use(
   cors({
     origin: function (origin, callback) {
-      // Postman / server-side requests ke liye
-      if (!origin) {
-        return callback(null, true);
-      }
+      // Postman aur server-side requests
+      if (!origin) return callback(null, true);
 
       if (allowedOrigins.includes(origin)) {
         return callback(null, true);
       }
 
-      return callback(
-        new Error("Not allowed by CORS")
-      );
+      return callback(new Error("Not allowed by CORS"));
     },
     credentials: true,
   })
@@ -62,16 +58,12 @@ const startServer = async () => {
   try {
     await connectDB();
 
-    // app.listen(port, () => {
-    //   console.log(`Server is running on http://localhost:${port}`);
-    // });
     app.listen(port, "0.0.0.0", () => {
-  console.log(`Server is running on port ${port}`);
-});
+      console.log(`Server is running on port ${port}`);
+    });
   } catch (error) {
     console.error("Server Start Error:", error.message);
   }
 };
 
 startServer();
-
