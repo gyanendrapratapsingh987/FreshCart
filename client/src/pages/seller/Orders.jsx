@@ -5,7 +5,7 @@ import { assets } from "../../assets/assets";
 import toast from "react-hot-toast";
 
 const Orders = () => {
-  const { currency, axios } = useAppContext();
+  const { currency, axios, API_URL } = useAppContext();
 
   const [orders, setOrders] = useState([]);
   const [updatingOrder, setUpdatingOrder] = useState(null);
